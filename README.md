@@ -43,5 +43,5 @@ By changing url to your database, username and password to your own. <br/>
 mvn clean package
 ```
 
-4. Run this in server. I am using Tomcat 9.0.50. <br/>
+4. Run this. <br/>
 5. Go to url "http://localhost:8080/swagger-ui/index.html" and read description of end points.
