@@ -26,7 +26,7 @@ public class OrderMapper implements Mapper<Order, OrderRequestDto, OrderResponse
 
     @Override
     public OrderResponseDto toResponseDto(Order order) {
-        OrderResponseDto responseDto= new OrderResponseDto();
+        OrderResponseDto responseDto = new OrderResponseDto();
         responseDto.setId(order.getId());
         responseDto.setCarId(order.getCarId());
         responseDto.setCarOwnerId(order.getCarOwnerId());

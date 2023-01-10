@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -31,9 +32,24 @@ public class Order {
     @OneToMany
     private Set<Favor> favors = new HashSet<>();
     @ManyToMany
-    private Set<Ware> wares = new HashSet<>();
+    private List<Ware> wares = new ArrayList<>();
     private LocalDate acquireDate;
     private LocalDate endingDate;
     @Enumerated(value = EnumType.STRING)
-    private OrderStatus status;
+    private Order.OrderStatus status;
+    private BigDecimal finalPrice;
+
+    public enum OrderStatus {
+        ACCEPTED("accepted"),
+        PROCESSING("processing"),
+        SUCCESS("success"),
+        FAILURE("failure"),
+        PAID("paid");
+
+        private final String value;
+
+        OrderStatus(String value) {
+            this.value = value;
+        }
+    }
 }

@@ -1,13 +1,12 @@
 package com.example.autoservice.controller;
 
 import com.example.autoservice.dto.FavorRequestDto;
-import com.example.autoservice.dto.StatusDto;
-import com.example.autoservice.model.FavorStatus;
-import com.example.autoservice.model.Master;
-import com.example.autoservice.service.FavorService;
 import com.example.autoservice.dto.FavorResponseDto;
+import com.example.autoservice.dto.StatusDto;
 import com.example.autoservice.dto.mapper.FavorMapper;
 import com.example.autoservice.model.Favor;
+import com.example.autoservice.model.Master;
+import com.example.autoservice.service.FavorService;
 import com.example.autoservice.service.MasterService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,7 +34,7 @@ public class FavorController {
     @Operation(summary = "Create new favor with name, price and master id")
     public FavorResponseDto create(@RequestBody FavorRequestDto requestDto) {
         Favor favor = favorMapper.toModel(requestDto);
-        favor.setStatus(FavorStatus.NOT_PAID);
+        favor.setStatus(Favor.FavorStatus.NOT_PAID);
         Master master = masterService.getById(requestDto.getMasterId());
         favorService.save(favor);
         master.getFavors().add(favor);

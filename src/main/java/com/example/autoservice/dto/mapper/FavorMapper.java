@@ -6,7 +6,7 @@ import com.example.autoservice.model.Favor;
 import org.springframework.stereotype.Component;
 
 @Component
-public class FavorMapper implements Mapper<Favor, FavorRequestDto, FavorResponseDto>{
+public class FavorMapper implements Mapper<Favor, FavorRequestDto, FavorResponseDto> {
     @Override
     public Favor toModel(FavorRequestDto requestDto) {
         Favor favor = new Favor();

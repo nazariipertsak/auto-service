@@ -1,7 +1,6 @@
 package com.example.autoservice.service.impl;
 
 import com.example.autoservice.model.Order;
-import com.example.autoservice.model.OrderStatus;
 import com.example.autoservice.repository.OrderRepository;
 import com.example.autoservice.service.OrderService;
 import jakarta.persistence.EntityNotFoundException;
@@ -31,14 +30,14 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order updateStatus(Order order, String status) {
         order.setStatus(getOrderStatus(status));
-        if (order.getStatus().equals(OrderStatus.SUCCESS)
-        || order.getStatus().equals(OrderStatus.FAILURE)) {
+        if (order.getStatus().equals(Order.OrderStatus.SUCCESS)
+                || order.getStatus().equals(Order.OrderStatus.FAILURE)) {
             order.setEndingDate(LocalDate.now());
         }
         return orderRepository.save(order);
     }
 
-    private OrderStatus getOrderStatus(String status) {
-        return OrderStatus.valueOf(status.replaceAll(" ", "_").toUpperCase());
+    private Order.OrderStatus getOrderStatus(String status) {
+        return Order.OrderStatus.valueOf(status.replaceAll(" ", "_").toUpperCase());
     }
 }

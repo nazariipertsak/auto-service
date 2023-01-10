@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class WareResponseDto {
-    private Long Id;
+    private Long id;
     private String name;
     private BigDecimal price;
 }

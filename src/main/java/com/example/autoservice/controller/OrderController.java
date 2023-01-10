@@ -7,7 +7,6 @@ import com.example.autoservice.dto.StatusDto;
 import com.example.autoservice.dto.mapper.OrderMapper;
 import com.example.autoservice.model.CarOwner;
 import com.example.autoservice.model.Order;
-import com.example.autoservice.model.OrderStatus;
 import com.example.autoservice.service.CarOwnerService;
 import com.example.autoservice.service.FavorService;
 import com.example.autoservice.service.OrderService;
@@ -49,7 +48,7 @@ public class OrderController {
     @Operation(summary = "Create new order with details, car id and car owner id")
     public OrderResponseDto create(@RequestBody OrderRequestDto requestDto) {
         Order order = orderMapper.toModel(requestDto);
-        order.setStatus(OrderStatus.ACCEPTED);
+        order.setStatus(Order.OrderStatus.ACCEPTED);
         order.setAcquireDate(LocalDate.now());
         CarOwner carOwner = carOwnerService.getById(requestDto.getCarOwnerId());
         orderService.save(order);
@@ -69,8 +68,8 @@ public class OrderController {
     }
 
     @PutMapping("/{id}/status")
-    @Operation(summary = "Update status of order by id, " +
-            "can be accepted, processing, failure, success, paid")
+    @Operation(summary = "Update status of order by id, "
+            + "can be accepted, processing, failure, success, paid")
     public OrderResponseDto updateStatus(@PathVariable Long id,
                                          @RequestBody StatusDto status) {
         Order order = orderService.getById(id);
@@ -91,7 +90,8 @@ public class OrderController {
         Order order = orderService.getById(id);
         favorService.findFavorsWithIds(goodsToOrderDto.getFavorsIds())
                 .forEach(f -> order.getFavors().add(f));
-        wareService.findWaresWithIds(goodsToOrderDto.getWaresIds()).forEach(w -> order.getWares().add(w));
+        wareService.findWaresWithIds(goodsToOrderDto.getWaresIds())
+                .forEach(w -> order.getWares().add(w));
         return orderMapper.toResponseDto(orderService.save(order));
     }
 }

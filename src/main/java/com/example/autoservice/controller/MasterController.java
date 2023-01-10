@@ -25,7 +25,8 @@ public class MasterController {
     private final MasterService masterService;
     private final MasterMapper masterMapper;
 
-    public MasterController(FavorMapper favorMapper, MasterService masterService, MasterMapper masterMapper) {
+    public MasterController(FavorMapper favorMapper, MasterService masterService,
+                            MasterMapper masterMapper) {
         this.favorMapper = favorMapper;
         this.masterService = masterService;
         this.masterMapper = masterMapper;
