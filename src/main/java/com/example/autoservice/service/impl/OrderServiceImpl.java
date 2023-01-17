@@ -22,7 +22,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order getById(Long id) {
-        return orderRepository.getByIdWithCarsAndOrders(id)
+        return orderRepository.getByIdWithFavorsAndWares(id)
                 .orElseThrow(() ->
                         new EntityNotFoundException("Can't find order with id = " + id));
     }

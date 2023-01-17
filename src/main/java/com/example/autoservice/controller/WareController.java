@@ -27,8 +27,7 @@ public class WareController {
     @PostMapping
     @Operation(summary = "Create new ware with name and price")
     public WareResponseDto create(@RequestBody WareRequestDto requestDto) {
-        Ware ware = wareMapper.toModel(requestDto);
-        wareService.save(ware);
+        Ware ware = wareService.save(wareMapper.toModel(requestDto));
         return wareMapper.toResponseDto(ware);
     }
 

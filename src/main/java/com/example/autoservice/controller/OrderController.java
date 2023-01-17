@@ -51,7 +51,7 @@ public class OrderController {
         order.setStatus(Order.OrderStatus.ACCEPTED);
         order.setAcquireDate(LocalDate.now());
         CarOwner carOwner = carOwnerService.getById(requestDto.getCarOwnerId());
-        orderService.save(order);
+        order = orderService.save(order);
         carOwner.getOrders().add(order);
         carOwnerService.save(carOwner);
         return orderMapper.toResponseDto(order);
@@ -63,7 +63,7 @@ public class OrderController {
                                    @RequestBody OrderRequestDto requestDto) {
         Order order = orderMapper.toModel(requestDto);
         order.setId(id);
-        orderService.save(order);
+        order = orderService.save(order);
         return orderMapper.toResponseDto(order);
     }
 
@@ -73,8 +73,7 @@ public class OrderController {
     public OrderResponseDto updateStatus(@PathVariable Long id,
                                          @RequestBody StatusDto status) {
         Order order = orderService.getById(id);
-        orderService.updateStatus(order, status.getStatus());
-        return orderMapper.toResponseDto(order);
+        return orderMapper.toResponseDto(orderService.updateStatus(order, status.getStatus()));
     }
 
     @GetMapping("/{id}/price")

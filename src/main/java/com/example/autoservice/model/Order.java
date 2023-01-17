@@ -15,11 +15,17 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "orders")
 public class Order {
@@ -38,6 +44,16 @@ public class Order {
     @Enumerated(value = EnumType.STRING)
     private Order.OrderStatus status;
     private BigDecimal finalPrice;
+
+    public Order(Long id, Long carId, Long carOwnerId, String details, LocalDate acquireDate,
+                 OrderStatus status) {
+        this.id = id;
+        this.carId = carId;
+        this.carOwnerId = carOwnerId;
+        this.details = details;
+        this.acquireDate = acquireDate;
+        this.status = status;
+    }
 
     public enum OrderStatus {
         ACCEPTED("accepted"),

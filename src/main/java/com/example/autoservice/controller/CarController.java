@@ -27,8 +27,7 @@ public class CarController {
     @PostMapping
     @Operation(summary = "Create new car with brand, model, number and year")
     public CarResponseDto create(@RequestBody CarRequestDto requestDto) {
-        Car car = carMapper.toModel(requestDto);
-        carService.save(car);
+        Car car = carService.save(carMapper.toModel(requestDto));
         return carMapper.toResponseDto(car);
     }
 
@@ -38,7 +37,7 @@ public class CarController {
                                  @RequestBody CarRequestDto requestDto) {
         Car car = carMapper.toModel(requestDto);
         car.setId(id);
-        carService.save(car);
+        car = carService.save(car);
         return carMapper.toResponseDto(car);
     }
 }

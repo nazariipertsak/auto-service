@@ -36,7 +36,7 @@ public class MasterController {
     @Operation(summary = "Create new master with full name")
     public MasterResponseDto create(@RequestBody MasterRequestDto requestDto) {
         Master master = masterMapper.toModel(requestDto);
-        masterService.save(master);
+        master = masterService.save(master);
         return masterMapper.toResponseDto(master);
     }
 
@@ -46,7 +46,7 @@ public class MasterController {
                                     @RequestBody MasterRequestDto requestDto) {
         Master master = masterMapper.toModel(requestDto);
         master.setId(id);
-        masterService.save(master);
+        master = masterService.save(master);
         return masterMapper.toResponseDto(master);
     }
 

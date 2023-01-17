@@ -36,7 +36,7 @@ public class FavorController {
         Favor favor = favorMapper.toModel(requestDto);
         favor.setStatus(Favor.FavorStatus.NOT_PAID);
         Master master = masterService.getById(requestDto.getMasterId());
-        favorService.save(favor);
+        favor = favorService.save(favor);
         master.getFavors().add(favor);
         masterService.save(master);
         return favorMapper.toResponseDto(favor);
@@ -48,7 +48,7 @@ public class FavorController {
                                    @RequestBody FavorRequestDto requestDto) {
         Favor favor = favorMapper.toModel(requestDto);
         favor.setId(id);
-        favorService.save(favor);
+        favor = favorService.save(favor);
         return favorMapper.toResponseDto(favor);
     }
 
