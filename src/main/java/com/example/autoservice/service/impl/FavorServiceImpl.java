@@ -1,12 +1,11 @@
 package com.example.autoservice.service.impl;
 
-import com.example.autoservice.model.FavorStatus;
-import jakarta.persistence.EntityNotFoundException;
 import com.example.autoservice.model.Favor;
-import java.util.List;
-import org.springframework.stereotype.Service;
 import com.example.autoservice.repository.FavorRepository;
 import com.example.autoservice.service.FavorService;
+import jakarta.persistence.EntityNotFoundException;
+import java.util.List;
+import org.springframework.stereotype.Service;
 
 @Service
 public class FavorServiceImpl implements FavorService {
@@ -39,7 +38,7 @@ public class FavorServiceImpl implements FavorService {
         return favorRepository.findFavorsByIdIn(favorsIds);
     }
 
-    private FavorStatus getFavorStatus(String status) {
-        return FavorStatus.valueOf(status.replaceAll(" ", "_").toUpperCase());
+    private Favor.FavorStatus getFavorStatus(String status) {
+        return Favor.FavorStatus.valueOf(status.replaceAll(" ", "_").toUpperCase());
     }
 }

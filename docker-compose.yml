@@ -1,0 +1,32 @@
+version: "10.20.12"
+
+services:
+  postgresqldb:
+    platform: linux/x86_64
+    image: postgres:15.1
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - POSTGRESDB_PASSWORD=$POSTGRES_PASSWORD
+      - POSTGRESDB_DATABASE=$POSTGRES_DATABASE
+    ports:
+      - $POSTGRES_DOCKER_PORT:$POSTGRES_DOCKER_PORT
+  app:
+    depends_on:
+      - postgresqldb
+    restart: on-failure
+    image: npertsak/auto-service-app
+    build: .
+    env_file: ./.env
+    ports:
+      - $SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT
+      - $DEBUG_PORT:$DEBUG_PORT
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url"  : "jdbc:postgresql://postgresqldb:$POSTGRES_LOCAL_PORT/$POSTGRES_DATABASE?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC",
+        "spring.datasource.username" : "$POSTGRES_USER",
+        "spring.datasource.password" : "$POSTGRES_PASSWORD",
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.PostgreSQLDialect",
+        "spring.jpa.hibernate.ddl-auto" : "create-drop"
+      }'
+      JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"

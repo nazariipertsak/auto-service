@@ -1,6 +1,6 @@
 # :car: Auto-Service :car:
 # Project description
-Simple REST API of auto-service for ordering wares and favors that supports CRUD operations. Described by Swagger.
+Simple REST API of auto-service for ordering wares and favors that supports CRUD operations. Described by Swagger and tested with test containers and mockito.
 # Features
 - create and update master
 - count master's salary
@@ -31,6 +31,8 @@ Project uses 3-tier architecture:
 - Tomcat 9.0.50
 - PostgresSQL 15
 - Swagger
+- Mockito
+- Docker
 # Instructions to run my project
 1. Clone this repository <br/>
 2. Configure connection to your database in
@@ -43,5 +45,8 @@ By changing url to your database, username and password to your own. <br/>
 mvn clean package
 ```
 
-4. Run this. <br/>
-5. Go to url "http://localhost:8080/swagger-ui/index.html" and read description of end points.
+4. Run this with docker. <br/>
+```shell
+docker compose up
+```
+5. Go to url "http://localhost:6868/swagger-ui/index.html" and read description of end points.

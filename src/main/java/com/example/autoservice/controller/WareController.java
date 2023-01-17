@@ -3,8 +3,8 @@ package com.example.autoservice.controller;
 import com.example.autoservice.dto.WareRequestDto;
 import com.example.autoservice.dto.WareResponseDto;
 import com.example.autoservice.dto.mapper.WareMapper;
-import com.example.autoservice.service.WareService;
 import com.example.autoservice.model.Ware;
+import com.example.autoservice.service.WareService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,8 +27,7 @@ public class WareController {
     @PostMapping
     @Operation(summary = "Create new ware with name and price")
     public WareResponseDto create(@RequestBody WareRequestDto requestDto) {
-        Ware ware = wareMapper.toModel(requestDto);
-        wareService.save(ware);
+        Ware ware = wareService.save(wareMapper.toModel(requestDto));
         return wareMapper.toResponseDto(ware);
     }
 

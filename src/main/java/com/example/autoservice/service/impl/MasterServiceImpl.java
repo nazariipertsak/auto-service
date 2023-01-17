@@ -1,14 +1,13 @@
 package com.example.autoservice.service.impl;
 
-import com.example.autoservice.model.FavorStatus;
-import com.example.autoservice.service.FavorService;
-import jakarta.persistence.EntityNotFoundException;
-import java.math.BigDecimal;
-import java.util.List;
 import com.example.autoservice.model.Favor;
 import com.example.autoservice.model.Master;
 import com.example.autoservice.repository.MasterRepository;
+import com.example.autoservice.service.FavorService;
 import com.example.autoservice.service.MasterService;
+import jakarta.persistence.EntityNotFoundException;
+import java.math.BigDecimal;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -37,10 +36,10 @@ public class MasterServiceImpl implements MasterService {
     @Override
     public BigDecimal countSalary(List<Favor> favors) {
         BigDecimal sum = BigDecimal.valueOf(favors.stream()
-                .filter(f -> f.getStatus().equals(FavorStatus.NOT_PAID))
+                .filter(f -> f.getStatus().equals(Favor.FavorStatus.NOT_PAID))
                 .mapToDouble(f -> f.getPrice().doubleValue() * PERCENTAGE_OF_MASTER_SALARY)
                 .sum());
-        favors.forEach(f -> f.setStatus(FavorStatus.PAID));
+        favors.forEach(f -> f.setStatus(Favor.FavorStatus.PAID));
         favors.forEach(favorService::save);
         return sum;
     }

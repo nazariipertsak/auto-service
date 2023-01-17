@@ -10,5 +10,5 @@ public interface FavorService {
 
     Favor updateStatus(Favor favor, String status);
 
-    List<Favor> findFavorsWithIds(List<Long > favorsIds);
+    List<Favor> findFavorsWithIds(List<Long> favorsIds);
 }

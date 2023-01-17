@@ -3,13 +3,9 @@ package com.example.autoservice.controller;
 import com.example.autoservice.dto.CarRequestDto;
 import com.example.autoservice.dto.CarResponseDto;
 import com.example.autoservice.dto.mapper.CarMapper;
-import com.example.autoservice.service.CarService;
 import com.example.autoservice.model.Car;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import com.example.autoservice.service.CarService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.models.annotations.OpenAPI30;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -31,8 +27,7 @@ public class CarController {
     @PostMapping
     @Operation(summary = "Create new car with brand, model, number and year")
     public CarResponseDto create(@RequestBody CarRequestDto requestDto) {
-        Car car = carMapper.toModel(requestDto);
-        carService.save(car);
+        Car car = carService.save(carMapper.toModel(requestDto));
         return carMapper.toResponseDto(car);
     }
 
@@ -42,7 +37,7 @@ public class CarController {
                                  @RequestBody CarRequestDto requestDto) {
         Car car = carMapper.toModel(requestDto);
         car.setId(id);
-        carService.save(car);
+        car = carService.save(car);
         return carMapper.toResponseDto(car);
     }
 }

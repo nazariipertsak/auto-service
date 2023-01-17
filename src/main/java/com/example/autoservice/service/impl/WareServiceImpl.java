@@ -1,10 +1,10 @@
 package com.example.autoservice.service.impl;
 
 import com.example.autoservice.model.Ware;
-import java.util.List;
-import org.springframework.stereotype.Service;
 import com.example.autoservice.repository.WareRepository;
 import com.example.autoservice.service.WareService;
+import java.util.List;
+import org.springframework.stereotype.Service;
 
 @Service
 public class WareServiceImpl implements WareService {

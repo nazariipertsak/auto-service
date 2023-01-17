@@ -1,13 +1,17 @@
 package com.example.autoservice.dto;
 
-import com.example.autoservice.model.OrderStatus;
+import com.example.autoservice.model.Order;
 import java.time.LocalDate;
 import java.util.List;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderResponseDto {
     private Long id;
     private Long carId;
@@ -17,5 +21,5 @@ public class OrderResponseDto {
     private List<WareResponseDto> wares;
     private LocalDate acquireDate;
     private LocalDate endingDate;
-    private OrderStatus status;
+    private Order.OrderStatus status;
 }

@@ -35,7 +35,7 @@ public class CarOwnerController {
     @Operation(summary = "Create new car owner with full name and cars ids")
     public CarOwnerResponseDto create(@RequestBody CarOwnerRequestDto requestDto) {
         CarOwner carOwner = carOwnerMapper.toModel(requestDto);
-        carOwnerService.save(carOwner);
+        carOwner = carOwnerService.save(carOwner);
         return carOwnerMapper.toResponseDto(carOwner);
     }
 
@@ -45,7 +45,7 @@ public class CarOwnerController {
                                       @RequestBody CarOwnerRequestDto requestDto) {
         CarOwner carOwner = carOwnerMapper.toModel(requestDto);
         carOwner.setId(id);
-        carOwnerService.save(carOwner);
+        carOwner = carOwnerService.save(carOwner);
         return carOwnerMapper.toResponseDto(carOwner);
     }
 
