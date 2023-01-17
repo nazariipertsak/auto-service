@@ -33,6 +33,7 @@ Project uses 3-tier architecture:
 - Swagger
 - Mockito
 - Docker
+- Test Containers
 # Instructions to run my project
 1. Clone this repository <br/>
 2. Configure connection to your database in
