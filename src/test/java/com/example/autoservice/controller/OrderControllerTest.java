@@ -182,4 +182,4 @@ class OrderControllerTest {
                 .body("favors.size()", Matchers.equalTo(1))
                 .body("wares.size()", Matchers.equalTo(2));
     }
- }
+}

@@ -69,5 +69,4 @@ class WareControllerTest {
                 .body("name", Matchers.equalTo("Oil"))
                 .body("price", Matchers.equalTo(1000));
     }
-
 }

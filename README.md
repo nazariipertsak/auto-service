@@ -36,7 +36,7 @@ Project uses 3-tier architecture:
 # Instructions to run my project
 1. Clone this repository <br/>
 2. Configure connection to your database in
-> [cinema-app/src/main/resources/application.properties]
+> [Auto Service/src/main/resources/application.properties]
 
 By changing url to your database, username and password to your own. <br/>
 

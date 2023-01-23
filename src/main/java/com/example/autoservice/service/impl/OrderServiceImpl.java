@@ -38,6 +38,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private Order.OrderStatus getOrderStatus(String status) {
-        return Order.OrderStatus.valueOf(status.replaceAll(" ", "_").toUpperCase());
+        return Order.OrderStatus.valueOf(status.toUpperCase());
     }
 }

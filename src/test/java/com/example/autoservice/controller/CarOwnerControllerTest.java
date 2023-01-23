@@ -97,5 +97,4 @@ class CarOwnerControllerTest {
                 .body("[0].id", Matchers.equalTo(1))
                 .body("[0].status", Matchers.equalTo("SUCCESS"));
     }
-
 }

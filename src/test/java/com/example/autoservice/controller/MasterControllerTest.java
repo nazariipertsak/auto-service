@@ -108,5 +108,4 @@ class MasterControllerTest {
                 .statusCode(200)
                 .body(Matchers.equalTo("800"));
     }
-
 }
