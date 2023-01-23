@@ -39,8 +39,10 @@ public class MasterServiceImpl implements MasterService {
                 .filter(f -> f.getStatus().equals(Favor.FavorStatus.NOT_PAID))
                 .mapToDouble(f -> f.getPrice().doubleValue() * PERCENTAGE_OF_MASTER_SALARY)
                 .sum());
-        favors.forEach(f -> f.setStatus(Favor.FavorStatus.PAID));
-        favors.forEach(favorService::save);
+        for (Favor favor: favors) {
+            favor.setStatus(Favor.FavorStatus.PAID);
+            favorService.save(favor);
+        }
         return sum;
     }
 }
